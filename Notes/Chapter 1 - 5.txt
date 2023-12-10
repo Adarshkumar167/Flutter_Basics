@@ -1,0 +1,151 @@
+Chapter 1 - Developer Accounts
+------------------------------
+
+App Identifier - use when deployping app on google play store.
+Android - 25 USD
+
+
+
+Chapter 2 - Setup
+-----------------
+
+What is Flutter?
+Flutter is a rich UI framework developed by Google.
+
+What is Dart?
+Dart is the language that powers Flutter.
+
+DartPad
+
+binary executables - Setting up environment variables
+
+
+
+Chapter 3 - Introduction to Dart
+--------------------------------
+
+Keywords
+
+Data Types
+https://api.flutter.dev/flutter/dart-core/dart-core-library.html
+
+Constants
+Compile-time vs Run-time
+
+Variable - To hold data
+
+Functions - They hold your logic
+Use of camel case while naming a function. Example - getFullName
+calling/invoking the function
+parameter or arugment which we pass getFullName(String firstName, String lastName)
+
+Hot Reload - it looks for changes that you make to your code and executes only those changes
+
+Function long and short hand-
+
+Long - (preffered)
+
+String getFullName(String firstName, String lastName) {
+	return '$firstName $lastName';
+}
+
+These are used to store multiline content of the function.
+
+We can do this in another way given below-
+
+Short-
+
+String getFullName(String firstName, String lastName) => '$firstName $lastName';
+
+If there is a single line return we can do it as mentioned above.
+
+
+
+Chapter 4 - Dart Control statements and collections
+---------------------------------------------------
+
+If & Else - Conditional in Dart
+
+String '\''
+
+Simple Operator (+, -, *, /) (infix operator)
+		(--, ++) (prefix operator)
+we can also crate custom operator
+
+final name = 'Adarsh Kumar ';
+final nameTimes100 = name * 100;
+print(nameTimes100);
+
+List - List of homegenous "things" (also known as Arrays in C++)
+final name = ['Foo', 'Bar'];
+print(name.length);
+names.add('Adarsh');
+print(name.length);
+. - operator drill inside a thing to find other things.
+
+Exception (Range Error)
+
+Set - List of unique "things"
+var name = {'Foo', 'Bar'}; -> set<String>
+const things = {'foo', 1}; -> set<Object>
+
+
+Maps - Maps are used to hold key-value pairs of information
+const person = {'age': 20} -> Map<String,int>
+const person = {
+	'age': 20,
+	'name': 'Foo',
+	} -> Map<String,Object>
+person['lastname'] = 'Baz';
+keys inside the map should be unique.
+
+We will talk about null-safety next and what that means.
+
+
+
+Chapter 5 - Sound Null-safety in Dart
+-------------------------------------
+
+Making any type nullable
+Use the question mark after the data type such as "String?"
+
+String? name = 'Foo',
+List<String?>? names = ['Foo', 'Bar', null]; ✔️
+List<String>? names = ['Foo', 'Bar', null]; ✖️
+
+
+Cherry-picking non-null values (??)
+Use the ?? operator (infix operator)
+const String? firstName = null;
+const String? middleName = 'Kumar';
+const String? lastName = 'Singh';
+const firstNonNullValue = firstName ?? middleName ?? lastName;
+
+
+Null-aware assignment operator (??=)
+Use ??= in this case
+String? name = firstName;
+name ??= 'Hello';
+if name is null then it will get assigned to 'Hello'.
+
+
+Conditional invocation (?.)
+Use the ?. syntax to conditionally invoke a method or property
+List<String>? name = ['Foo'];
+final namesOfNames = names.length; ✖️
+name = null;
+final namesOfNames = names?.length; ✔️
+
+final length = names?.length;
+length -> int? (optional integer)
+final length = names?.length ?? 0;
+length -> int (not an optional integer anymore)
+
+names.add('baz'); ✖️
+The receiver can be 'null'
+names?.add('baz'); ✔️
+
+Example-
+showGizmo(Thing? thing) {
+	print(thing?.doohickey?.gizmo);
+}
