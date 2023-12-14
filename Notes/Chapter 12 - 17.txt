@@ -1,0 +1,35 @@
+Chapter 12 - Basic registration Screen
+--------------------------------------
+
+Hot reload/restart
+
+MaterialApp inside runApp & HomePage widget
+We don't need to recreate the MaterialApp
+
+Stateless and Stateful
+Stateful widget is a widget that contains information which can be changed as the user interacts with the widget.
+Stateless widget is a widget that does not contain any mutable pieces of information and doesn't manage any mutable pieces of inforamtion internally.
+
+Scaffold
+We need a Scaffold inside our HomePage widget
+
+Register Button
+Button on home page in the center to register
+
+Center
+TextButton
+AppBar
+
+anonymous user - firebase offers that
+
+Column with 2 text fields
+let's add username and password text fields
+
+Stateless -> stateful
+we need to grab the text from our controllers
+
+TextEditingController
+We need 2 of them for email and password text fields
+
+What is late? 
+It is keyword in dart that tells your program that although this variable has no value right now but i promise to assign a value to it before it is used so it is kind of a contract.

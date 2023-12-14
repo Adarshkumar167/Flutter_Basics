@@ -359,3 +359,45 @@ pubspec.yaml includes it all
 
 Adding our dependencies
 We need firebase_core, firebase_auth, cloud_firestore and firebase_analytics
+
+
+
+Chapter 9 - IOS App Setup (App Identifier, Certificates and Profiles) ✖️
+---------------------------------------------------------------------
+
+Developer account - In order to release the app for iOS and iPadOS you need a developer account
+
+Certificates and Profiles - What they are and why we need them.
+Certificates identifies you and Profiles identifies App.
+
+debug flavour / development flavour
+Production flavour
+
+Application is signed  with your production certificate and the application is signed also with the produciton profile.
+
+The missing pieces
+We need certificates, profiles and app ID plus device identifiers
+
+Certificates in Keychain
+
+Development Certificate
+Production Certificate
+App ID
+Device UUID
+
+Chapter 10 - Android app Setup
+------------------------------
+Android Emulator
+scrcpy 🔥
+adb 
+
+Chapter 11 - Firebase Backend Setup
+-----------------------------------
+Install FlutterFire CLI
+dart pub global activate flutterfire_cli
+
+What is Firebase CLI?
+A CLI to help us interact with Firebase right from our terminal.
+
+
+

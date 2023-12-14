@@ -81,7 +81,7 @@ final name = ['Foo', 'Bar'];
 print(name.length);
 names.add('Adarsh');
 print(name.length);
-. - operator drill inside a thing to find other things.
+"." - operator drill inside a thing to find other things.
 
 Exception (Range Error)
 
