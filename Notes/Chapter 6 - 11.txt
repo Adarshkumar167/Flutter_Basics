@@ -1,2 +1,361 @@
 Chapter 6 - Dart enumerations, classes and objects
 --------------------------------------------------
+
+Enumerations - Named list of related items
+also look for naming convention
+enum PersonProperties {firstName, lastName, age}
+
+void test() {
+	print(PersonProperties.firstName);
+}
+
+Switch Statement - To avoid if else over enumerations
+
+enum AnimalType { cat, dog, bunny }
+
+void test(AnimalType animalType) {
+	switch(animalType) {
+		case AnimalType.bunny:
+			print("Bunny");
+			break;
+		case AnimalType.cat:
+			print("Cat");
+			break;
+		case AnimalType.dog:
+			print("Dog");
+	}
+	print("Function is Finished");
+}
+
+test(AnimalType.cat);
+
+
+Classes - 
+
+class Person {
+	void run() {
+		print('Running');
+	}
+	void breathe() {
+		print('Breathing');
+	}
+}
+
+void test() {
+	final person = Person();
+	person.run();
+	person.brethe();
+}
+
+Instance - person variable is the instance of the Person Class.
+
+
+
+Objects - They are instances of classes
+
+
+
+Constructors - Allow you to create an instance of a class with optional parameters.
+
+Class Person {
+	final String name;
+	
+	Person(this.name);
+}
+
+void test() {
+	final foo = Person('Foo Bar');
+	print(foo.name);
+}
+
+
+Methods -
+Class Person {
+	final String name;
+	
+	Person(this.name);
+	
+	void printName() {
+		print(name);
+	}
+}
+
+void test() {
+	final foo = Person('Foo Bar');
+	foo.printName();
+}
+
+
+Inheritance and Subclassing -
+
+Classes can do a lot for us including inheritance and allowing us to subclass them.
+
+class LivingThing {
+	void breathe() {
+		print('Living thing is breathe');
+	}
+	void move() {
+		print('I am moving');
+	}
+}
+
+class Cat extends LivingThing {
+
+}
+
+
+void test() {
+	final fluffers = Cat();
+	fluffers.move();
+}	
+
+
+Abstract Classes - 
+abstract class LivingThing {
+	void breathe() {
+		print('Living thing is breathe');
+	}
+	void move() {
+		print('I am moving');
+	}
+}
+
+class Cat extends LivingThing {
+
+}
+
+
+void test() {
+	final fluffers = Cat();
+	fluffers.move();
+}
+
+an abstract class can't be instantiate
+
+
+Factory Constructors - Can return instances that are not of the same class!
+
+class Cat {
+	final String name;
+	Cat(this.name);
+	factory Cat.flufBall() {
+		return Cat('Fluff Ball');
+	}
+}
+
+void test() {
+	final fluffBall = Cat.fluffBall();
+	print(fluffball.name);
+}
+
+// class clusters (does not have to return an instance of the same class) - useful in data parsing and json parsing.
+
+
+
+Custom Operators - You can define custon operators on your own classes in Dart.
+
+class Cat {
+	final String name;
+	Cat(this.name);
+
+	@override 
+	bool operator == (covariant Cat other) => other.name == name;
+
+	@override
+	int get hashCode => name.hashCode;
+}
+
+void test() {
+	final cat1 = Cat('Foo');
+	final cat2 = Cat('Foo');
+	if(cat1 == cat2) {
+		print('They are equal');
+	} else {
+		print('They are not equal');
+	}
+}
+
+
+Chapter 7 - Advanced Dart
+-------------------------
+
+Extensions = Adding logic to existing classes.
+class Cat {
+	final String name;
+	Cat(this.name);
+}
+
+extension Run on Cat {
+	void run() {
+		print('Cat $name is running.');
+	}
+}
+
+void test() {
+	final meow = Cat('Fluffers');
+	meow.run();
+}
+
+--
+class Person {
+	final String firstName;
+	final String lastName;
+	Person(this.firstName, this.lastName);
+}
+
+extension FullName on Person {
+	String get fullNamee => '$firstName $lastName';
+}
+
+// here we have used getter function also.
+
+void test() {
+	final foo = Cat('Adarsh', 'Kumar');
+	print(foo.fullName);
+}
+...........................
+
+Future - Data to be returned in the future, as its name suggests.
+async programming.
+
+2+2 = 4 syncronous task;
+"bring milk form store" - Asynchoronous Task - whose results are not return immediately.
+
+Future<int> heavyFutureThatMultipliesByTwo(int a) {
+	return Future.delayed(const Duration(seconds: 3), () => a*2);
+}
+
+
+async/await - Mechanism for controlling asynchronous flow of data.
+
+Future<int> heavyFutureThatMultipliesByTwo(int a) {
+	return Future.delayed(const Duration(seconds: 3), () => a*2);
+}
+
+void test() async {
+	final result = await heavyFutureThatMultipliesByTwo(10);
+	print(result);
+}
+
+
+void test() async {
+	final result = await heavyFutureThatMultipliesByTwo(10);
+	print(result);
+}
+Here if he don't use async and await then it will return the Instance of 'Future<int>'. 
+
+............................
+
+Streams - An asynchronous "pipe" of data. that completes successfully, it never completes or it errors out and die.
+
+Stream<String> getName() {
+	return Stream.value('Foo');
+}
+
+void test()  async {
+	final value = getName(); ✖️
+	print(value);
+}
+
+it returns the Instance of '_ControllerStream<String>'
+
+Stream<String> getName() {
+	return Stream.value('Foo');
+}
+
+void test()  async {
+	await for(final value in getName()) {
+		print(value);
+	}
+	print('Stream finished working');
+}
+
+Adding good example -
+
+Stream<String> getName() {
+	return Stream.periodic(const Duration(seconds: 1), (value) {
+		return 'Foo';
+	});
+}
+
+void test()  async {
+	await for(final value in getName()) {
+		print(value);
+	}
+	print('Stream finished working');
+} ✔️
+
+Awaiting for Stream Data
+await for(...) syntax similar to await on Future.
+
+............................
+
+Generators - For generating "iterable", marked with sync* and async*.
+
+// Use of lazy collections
+with sync* - 
+Iterable<int> getOneTwoThree() sync* {
+	yield 1;
+	yield 2;
+	yield 3;
+}
+
+void test() {
+	for(final value in getOneTwoThree()) {
+		print(value);
+		if(value == 2) {
+			break;
+		}
+	}
+}	
+
+with async* -
+Stream<Iterable<int>> getOneTwoThree() async* {
+	yield [1,2,3];
+	yield [3];
+	yield [5];
+}
+
+............................
+
+Generics - To avoid re-writing similar code
+
+Class PairOfStrings {
+	final String value1;
+	final String value2;
+	PairOfStrings(this.value1, this.value2);
+}
+
+Class PairOfIntegers {
+	final int value1;
+	final int value2;
+	PairOfIntegers(this.value1, this.value2);
+}
+
+Creating Generics-
+class Pair<A, B> {
+	final A value1;
+	final B value2;
+	Pair(this.value1, this.value2);
+}
+
+void test() {
+	final names = Pair('Foo', 20);
+}
+
+
+
+Chapter 8 - Project Setup
+-------------------------
+
+Set project up from Terminal 
+Using "flutter create --org xxx.domain appname"
+
+Quick look around
+Let's check out the project Structure.
+
+Dependencies and more
+pubspec.yaml includes it all
+
+Adding our dependencies
+We need firebase_core, firebase_auth, cloud_firestore and firebase_analytics
