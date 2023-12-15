@@ -1,20 +1,24 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:initial/firebase_options.dart';
+import 'package:initial/views/login_view.dart';
+import 'package:initial/views/register_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const HomePage(),
-    ),
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const HomePage(),
+        routes: {
+          '/login/': (context) => const LoginPage(),
+          '/register/': (context) => const RegisterView(),
+        }),
   );
 }
 
@@ -23,30 +27,27 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        backgroundColor: Colors.blueAccent,
+    return FutureBuilder(
+      future: Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
       ),
-      body: FutureBuilder(
-        future: Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        ),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.done:
-              final user = FirebaseAuth.instance.currentUser;
-              if (user?.emailVerified ?? false) {
-                print('You are a verified user');
-              } else {
-                print('You need to verify your email first');
-              }
-              return const Text('Done');
-            default:
-              return const Text('Loading...');
-          }
-        },
-      ),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.done:
+            return const LoginPage();
+          // final user = FirebaseAuth.instance.currentUser;
+          // print(user);
+          // if (user?.emailVerified ?? false) {
+          //   return const Text('Done');
+          // } else {
+          //   return const VerifyEmailView();
+          // }
+          default:
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+        }
+      },
     );
   }
 }
