@@ -8,3 +8,86 @@ Create a new StatefulWidget called NotesView
 
 AppBar for displaying logout
 
+Return NotesView in HomePage
+We shouldn't have any print in Homepage
+
+We need popur items enumeration (soon)
+An enumeration that describes our popur menu items...
+
+PopupMenuButton vs PopupMenuItem
+They are usually used together
+
+PopupMenuItem<T> is of type generic that a user defines
+
+MenuAction enum
+
+Add a case of "logout" in there
+
+Add you popup menu button
+in NotesViewState app bar, create PopupMenuButton<MenuAction>
+
+Add logout to our popup menu
+In PopupMenuButton<MenuAction> create PopupMenuItemm<MenuAction>
+
+Popup menu item has a "child" property
+Child of PopupMenuITem<MenuAction> should be text ("Log out")
+
+Child is what the user sees and value is what you as a programmer see.
+
+Handle tapping on PopupMenuButton
+
+Use log instead of print
+import 'dart:developer' as devtools show log;
+
+
+
+Chapter 19 - Go From Login to Notes View
+----------------------------------------
+
+Login view doesn't route properly
+It just stays there and does nothing upon successful login
+
+Our print statements are everywhere 
+Let's remedy that and change them to log()
+
+
+Add a new route for NotesView
+In main.dart, add a new route called '/notes/' that goes to NoteView
+
+After placing the Navigator.of(context) we have to hot Reload.
+
+
+Chapter 20 - Cleaning Up our Routes
+-----------------------------------
+
+Avoid hardcoding everywhere
+What is hardcoding and why programmers don't like that
+
+
+
+Chapter 21 - Error Handling in Login View
+-----------------------------------------
+
+Error Handling in Login View
+Handle other Firebase authentication exceptions
+You can use e.code to get the error code
+
+Also handle other errors that might arise
+Use e.toString() and call the same function
+
+
+Chapter 22 - Error Handling in Register View, Next Screen After Registration
+----------------------------------------------------------------------------
+
+Use showErrorDialog instead of log
+In register_view.dart, change all logs to showErrorDialog
+
+We need to confirm email
+After every registration, we need to confirm the user's email
+
+
+Chapter 23 - Confirming Identity Before Going to Main UI
+--------------------------------------------------------
+
+Check if user is verified
+Add an if-statement in login_view.dart right after signInWithEmailandPassword
