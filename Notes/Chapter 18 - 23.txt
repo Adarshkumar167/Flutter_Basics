@@ -1,0 +1,10 @@
+Chapter 18 - Logout View
+------------------------
+Main UI of the app
+Right now we are returning Text('Done')
+
+Notes View Widget
+Create a new StatefulWidget called NotesView
+
+AppBar for displaying logout
+
