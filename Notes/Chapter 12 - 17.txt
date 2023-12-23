@@ -33,3 +33,138 @@ We need 2 of them for email and password text fields
 
 What is late? 
 It is keyword in dart that tells your program that although this variable has no value right now but i promise to assign a value to it before it is used so it is kind of a contract.
+
+Stateful widget has two great functions- 
+1. initstate - it is a function which is called by flutter automatically when it creates your homepage.
+
+2. dispose state - Now when this homepage dies and goes out of the memory or trying to go out of the memory it will also get a function called dispose.
+
+Hint on text Fields - To help the user understand what the text fields are for
+
+Authentication - import firebase_auth.dart;
+
+Create the user
+
+
+Make our password text field secure
+obscureText: ture, enableSuggestions: false, autocorrect: false
+
+Firebase needs initialization before other calls to Firebase
+Firebase.initializeApp
+
+Handling "configuration not found" error
+We haven't enabled email/password sign in combination.
+
+Enabling widget binding before Firebase.initializeApp
+
+Future Builder 
+HomePage can initializeApp using a FutureBuilder
+it performs a future and once future has succeeded or it has failed doing its work it will give you a call back in that callback it actually asks you to actually produce a widget you want to display to the user depending on the state of that futures results.
+
+Cannot register twice - let's see registration is indeed working
+
+Loading screen while waiting 
+We can use connection state to determine the state of a Future
+
+Chapter 13 - Login View
+-----------------------
+
+Create a stateful RegisterView widget 
+This will be used as the base of our register view
+
+Homepage is going to become our LoginView
+
+LoginView code goes into RegisterView
+
+LoginView, Handling user-not-found
+e.code == 'user-not-found'
+
+We need to handle exceptions
+
+⭐ After September 15, email enumeration protection has been enabled so we will always get invalid-credentials as the output. We can switch it of but it is not recommended.
+
+Email enumeration is a type of brute-force attack in which a malicious actor attempts to guess or confirm users in a system by passing an email address to the API and checking the response.
+
+RegisterView, handle weak-password
+e.code == 'weak-password'
+e.code == 'email-already-in-use'
+e.code == 'invalid-email'
+
+
+Chapter 14 - Separating app initialization from Login and Register Screens
+--------------------------------------------------------------------------
+
+Widgets that are doing app initialization
+This is not actually a good idea, we need to clean this up
+
+RegisterView needs it own file
+
+Email verification
+Why email verification is important...
+
+
+Chapter 15 - Setting up Git and GitHub
+--------------------------------------
+Version control and whey we need it
+
+
+Chapter 16 - Email Verification View
+------------------------------------
+
+Why do we need email verification?
+People can sign up with emails they don't own
+
+Pushing VerifyEmailView into the screen
+Push VerifyEmailView into the stack with MaterialPageRoute
+
+⭐
+Navigator.of(context).push(MaterialPageRoute(builder: (context) => const VerifyEmailView(),
+),);
+
+CTA Button and text
+Display Column, Text and a TextButton to send email verification
+
+Send email verification
+await user?.sendEmailVerification();
+
+What does the email look like?
+
+
+Let's verify
+Users will have to click on the link to verify their emails
+
+Users in Firebase console
+Every registered user appears in the Firebase console
+
+Push error
+flutter/flutter/issue/16218
+
+after verification you need to login again
+
+
+Chapter 17 - Link Between Login and Register Views
+--------------------------------------------------
+
+We need to go between views
+
+Register button on login view
+add a textButton to login view to send us to register view.
+
+⭐
+Named routes vs anonymous routes
+Anonymous routes are not as resuable
+
+Define login and register routes
+
+Go from login to register view (will cause error)
+Using Navigator.of(context).pushNamedAndRemoveUntil
+
+No Scaffold to register view
+
+We need this to fix our previous error
+
+Remove scaffold from HomePage
+Add it instead to our 3 other view
+
+Login <-> Register view
+Let's make sure the connection works
