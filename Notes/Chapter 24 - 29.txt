@@ -20,3 +20,17 @@ factory AuthUser.fromFirebase(User user) => AuthUser(user.emailVerified)
 
 Chapter 25 - Migrating to Auth Service 
 --------------------------------------
+
+AuthService.firebase
+
+
+Chapter 26 - Unit Testing our AuthService
+-----------------------------------------
+
+Unit Testing our Auth Service
+
+TDD (Test Driven Development)
+Tests need to always be written before code, not the other way around.
+
+Different types of tests
+Unit, widget and integration tests
