@@ -34,3 +34,81 @@ Tests need to always be written before code, not the other way around.
 
 Different types of tests
 Unit, widget and integration tests
+
+Mocking - you imetating a real service.
+
+What are dev dependencies?
+Not used in the final product.
+
+We need our test dependencies
+flutter pub add test --dev
+
+Delete existing tests
+Delete test/widget_test.dart
+
+Let's create our new tests
+Create test/auth_test.dart
+
+Main function of tests
+In auth_test.dart, add void main() {}
+
+Let's recompile
+Stop the debug session, and rebuild so we get the test package
+
+Make isEmailBerifiedrequired
+Go to Authuser and make the isEmailverified required because it's not otherwise clear when we construct it
+
+We need a mock auth provider
+Why do we use mocks?
+// dependencies injection
+
+Add MockAuthProvider
+In test/auth_test.dart
+
+Mock createUser
+Future<AuthUser> createUser
+
+Mock currentUser
+AuthUser? get currentUser => _user;
+
+Mock initialize
+Future<void> initialize() async
+
+Mock login
+Future<AuthUser> login
+
+Mock logOut
+Future<void> logOut() async
+
+Mock sendEmailVerification
+Future<void> sendEmailVerification() async
+
+What are test groups?
+For grouping together similar tests
+
+Create your mock provider
+Do this in the main() function of your tests
+
+Testing provider.isInitialized
+Provider shouldn't be initialized to begin with
+
+Test logging out before initialization
+the provider should throw a NotInitializedException
+
+Testing provider initialization
+provider.isinitialized
+
+Testing null user to begin with
+The user should be null upon initialization
+
+Testing time required to initialize
+We can use timeouts in this case
+
+Test creating a user
+And test all edge cases that might occur
+
+Test logging out and in again
+This is a normal scenario that should just work; let's create a test for it
+
+Now run your tests
+flutter test test/auth_test.dart
