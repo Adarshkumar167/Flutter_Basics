@@ -5,7 +5,6 @@ App Identifier - use when deployping app on google play store.
 Android - 25 USD
 
 
-
 Chapter 2 - Setup
 -----------------
 

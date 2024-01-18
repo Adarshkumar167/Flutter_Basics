@@ -59,7 +59,6 @@ Constructors - Allow you to create an instance of a class with optional paramete
 
 Class Person {
 	final String name;
-	
 	Person(this.name);
 }
 
@@ -204,7 +203,7 @@ class Person {
 }
 
 extension FullName on Person {
-	String get fullNamee => '$firstName $lastName';
+	String get fullName => '$firstName $lastName';
 }
 
 // here we have used getter function also.
@@ -398,6 +397,3 @@ dart pub global activate flutterfire_cli
 
 What is Firebase CLI?
 A CLI to help us interact with Firebase right from our terminal.
-
-
-

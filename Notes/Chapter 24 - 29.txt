@@ -112,3 +112,46 @@ This is a normal scenario that should just work; let's create a test for it
 
 Now run your tests
 flutter test test/auth_test.dart
+
+Chapter 27 - CRUD Local Storage
+-------------------------------
+
+What is SQLite?
+Why do we even need it?
+
+DB Browser
+Creating our use table
+CREATE TABLE IF NOT EXISTS "user"...
+
+Creating our note table
+CREATE TABLW IF NOT EXISTS "note"...
+
+Creating these programmatically
+We need to create this programmatically otherwise we have to move it to docs folder manually.
+
+We need a few dependencies
+Flutter pub add => sqflite, path_provider, path
+
+Why do we need these sqflite package?
+For storage in our data
+
+Why do we need the path provider?
+To get our app's documents directory for database storage
+
+And why do we need the path package?
+It has a useful "join" function
+
+Let's create our notes_service.dart file
+
+We need to construct our db path
+Use path and path_provider to do that
+
+We need database users
+Create DatabaseUser class insider notes_services.dart
+
+Let's open our DB
+Future<void> open() async
+
+Closing the DB
+Future<void> close() async
+
