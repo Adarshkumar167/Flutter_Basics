@@ -78,28 +78,29 @@ class _NewNotesViewState extends State<NewNotesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("New Note"),
-        ),
-        body: FutureBuilder(
-          future: createNewNote(),
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.done:
-                _note = snapshot.data;
-                _setupTextControllerListner();
-                return TextField(
-                  controller: _texController,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  decoration: const InputDecoration(
-                    hintText: 'Start typing your note...',
-                  ),
-                );
-              default:
-                return const CircularProgressIndicator();
-            }
-          },
-        ));
+      appBar: AppBar(
+        title: const Text("New Note"),
+      ),
+      body: FutureBuilder(
+        future: createNewNote(),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.done:
+              _note = snapshot.data;
+              _setupTextControllerListner();
+              return TextField(
+                controller: _texController,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                decoration: const InputDecoration(
+                  hintText: 'Start typing your note...',
+                ),
+              );
+            default:
+              return const CircularProgressIndicator();
+          }
+        },
+      ),
+    );
   }
 }
