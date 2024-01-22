@@ -9,7 +9,7 @@ import 'package:path/path.dart' show join;
 class NotesService {
   Database? _db;
 
-  List<Database> _notes = [];
+  List<DatabaseNote> _notes = [];
 
   static final NotesService _shared = NotesService._sharedInstance();
 
@@ -35,8 +35,8 @@ class NotesService {
 
   Future<void> _cacheNotes() async {
     final allNotes = await getAllNote();
-    _notes = allNotes.cast<Database>().toList();
-    _notesStreamController.add(_notes.cast<DatabaseNote>());
+    _notes = allNotes.toList();
+    _notesStreamController.add(_notes);
   }
 
   Future<DatabaseNote> updateNote({
@@ -56,8 +56,9 @@ class NotesService {
       throw CouldNotUpdateNotes();
     } else {
       final updatedNotes = await getNote(id: note.id);
-      _notes.add(updatedNotes as Database);
-      _notesStreamController.add(_notes.cast<DatabaseNote>());
+      _notes.removeWhere((note) => note.id == updatedNotes.id);
+      _notes.add(updatedNotes);
+      _notesStreamController.add(_notes);
       return updatedNotes;
     }
   }
@@ -83,8 +84,8 @@ class NotesService {
       throw CouldNotFindNote();
     } else {
       final note = DatabaseNote.fromRow(notes.first);
-      _notes.removeWhere((note) => id == id);
-      _notesStreamController.add(_notes.cast<DatabaseNote>());
+      _notes.removeWhere((note) => note.id == id);
+      _notesStreamController.add(_notes);
       return note;
     }
   }
@@ -94,7 +95,7 @@ class NotesService {
     final db = _getDatabaseOrThrow();
     final numberOfDeletions = await db.delete(noteTable);
     _notes = [];
-    _notesStreamController.add(_notes.cast<DatabaseNote>());
+    _notesStreamController.add(_notes);
     return numberOfDeletions;
   }
 
@@ -109,8 +110,8 @@ class NotesService {
     if (deleteCount == 0) {
       throw CouldNotDeleteNote();
     } else {
-      _notes.removeWhere((note) => id == id);
-      _notesStreamController.add(_notes.cast<DatabaseNote>());
+      _notes.removeWhere((note) => note.id == id);
+      _notesStreamController.add(_notes);
     }
   }
 
@@ -134,8 +135,8 @@ class NotesService {
       isSyncedWithCloud: true,
     );
 
-    _notes.add(note as Database);
-    _notesStreamController.add(_notes.cast<DatabaseNote>());
+    _notes.add(note);
+    _notesStreamController.add(_notes);
 
     return note;
   }
