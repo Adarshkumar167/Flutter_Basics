@@ -194,5 +194,6 @@ Chapter 32 - Displaying Notes in Notes View
 Chapter 33 - Deleting Existing Notes in Notes View
 --------------------------------------------------
 
-
+Chapter 34 - Updating Existing Notes
+------------------------------------
 
