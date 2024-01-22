@@ -182,5 +182,9 @@ Chapter 29 - Preparing Notes View to Read All Notes
 Our AuthUser doesn't have an email
 We need and email field to create the user in our DB
 
+Chapter 30 - Preparing to Create New Notes
+------------------------------------------
 
+Chapter 31 - Creating New Notes
+-------------------------------
 
