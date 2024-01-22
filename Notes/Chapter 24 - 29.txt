@@ -155,3 +155,32 @@ Future<void> open() async
 Closing the DB
 Future<void> close() async
 
+Convenience funtion for getting current DB
+Database _getDatabaseOrThrow() {
+
+Abilit to fetch users
+Future<DatabaseUser> getUser({required String email}) async
+
+Allow notes to be deleted
+Future<void> deleteNote({reqired int id}) async
+
+
+Chapter 28 - Working with Streams in Notes Service
+--------------------------------------------------
+
+Caching data
+We need the stream and stream controller to cache data
+
+Local list of fetched notes
+List<DatabaseNotes> _notes = [];
+
+more view video
+
+Chapter 29 - Preparing Notes View to Read All Notes
+---------------------------------------------------
+
+Our AuthUser doesn't have an email
+We need and email field to create the user in our DB
+
+
+
