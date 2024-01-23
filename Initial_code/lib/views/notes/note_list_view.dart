@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:initial/services/auth/crud/notes_services.dart';
+import 'package:initial/services/crud/notes_services.dart';
 import 'package:initial/utilities/dialogs/delete_dialog.dart';
 
 typedef NoteCallback = void Function(DatabaseNote note);

@@ -1,0 +1,9 @@
+Chapter 36 - Writing Notes to Cloud Firestore
+---------------------------------------------
+
+Production vs test mode (looser and tighter)
+
+Collections - A group of related objects
+
+
+
