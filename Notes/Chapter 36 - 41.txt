@@ -7,3 +7,29 @@ Collections - A group of related objects
 
 
 
+Chapter 39 - Introduction to Bloc
+---------------------------------
+
+What is flutter_bloc?
+A set of Flutter specific Bloc code that helps us with creating widgets.
+
+Counter bloc app to test Bloc for now is different from usual counter apps
+
+Bloc class
+The core of the Bloc library
+
+Bloc Provider
+Creates a BLoc instance and provides it to you
+
+BLocListener
+It can react to changes in your Bloc
+
+BlocBuilder
+Uses your Bloc state changes to provide you with a widget
+
+BlocConsumer
+Combines BlocListener ad BlocBuilder
+
+We need a counter-state class
+abstract class CounterState
+
