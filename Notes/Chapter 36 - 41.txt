@@ -44,6 +44,12 @@ AuthBlocState, AuthBlocEvent, AuthBLoc
 
 
 
+Chapter 41 - Handling Auth Bloc Exceptions During Login
+-------------------------------------------------------
 
+Handling Auth Bloc Exceptions During Login
+
+Let's start using BlocListener
+It's great for side-effects such as displaying dialogs while some other operation is ongoing
 
 
