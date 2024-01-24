@@ -33,3 +33,17 @@ Combines BlocListener ad BlocBuilder
 We need a counter-state class
 abstract class CounterState
 
+
+Chapter 40 - Converting our Auth Process to Bloc
+------------------------------------------------
+
+Converting our Auth Process to Bloc
+
+We need 3 main Bloc components
+AuthBlocState, AuthBlocEvent, AuthBLoc
+
+
+
+
+
+
