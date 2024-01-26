@@ -52,4 +52,10 @@ Handling Auth Bloc Exceptions During Login
 Let's start using BlocListener
 It's great for side-effects such as displaying dialogs while some other operation is ongoing
 
+Chapter 42 - Moving to Bloc for Routing and Dialogs
+---------------------------------------------------
+
+Chapter 43 - Loading Screens
+----------------------------
+
 

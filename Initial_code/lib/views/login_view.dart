@@ -40,10 +40,10 @@ class _LoginPageState extends State<LoginPage> {
       listener: (context, state) async {
         if (state is AuthStateLoggedOut) {
           final closeDialog = _closeDialogHandle;
-          if (!state.isLodaing && closeDialog != null) {
+          if (!state.isLoading && closeDialog != null) {
             closeDialog();
             _closeDialogHandle = null;
-          } else if (state.isLodaing && closeDialog == null) {
+          } else if (state.isLoading && closeDialog == null) {
             _closeDialogHandle =
                 showLoadingDialog(context: context, text: 'Loading...');
           }
