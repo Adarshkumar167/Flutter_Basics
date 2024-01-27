@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:initial/services/auth/auth_exceptions.dart';
 import 'package:initial/services/auth/bloc/auth_bloc.dart';
 import 'package:initial/services/auth/bloc/auth_event.dart';
 import 'package:initial/services/auth/bloc/auth_state.dart';
 import 'package:initial/utilities/dialogs/error_dialog.dart';
-import 'package:initial/utilities/dialogs/loading_dialog.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginViewState extends State<LoginView> {
   late final TextEditingController _email;
   late final TextEditingController _password;
-  CloseDialog? _closeDialogHandle;
 
   @override
   void initState() {
@@ -39,20 +36,15 @@ class _LoginPageState extends State<LoginPage> {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) async {
         if (state is AuthStateLoggedOut) {
-          final closeDialog = _closeDialogHandle;
-          if (!state.isLoading && closeDialog != null) {
-            closeDialog();
-            _closeDialogHandle = null;
-          } else if (state.isLoading && closeDialog == null) {
-            _closeDialogHandle =
-                showLoadingDialog(context: context, text: 'Loading...');
-          }
           if (state.exception is UserNotFoundAuthException) {
-            await showErrorDialog(context, 'Cannot find a user with the entered credentials!');
+            await showErrorDialog(
+              context,
+              'Cannot find a user with the entered credentials!',
+            );
           } else if (state.exception is WrongPasswordAuthException) {
             await showErrorDialog(context, 'Wrong credentials');
-          } else if (state is GenericAuthException) {
-            await showErrorDialog(context, 'Authentication Error');
+          } else if (state.exception is GenericAuthException) {
+            await showErrorDialog(context, 'Authentication error');
           }
         }
       },
@@ -62,10 +54,11 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: Colors.blueAccent,
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              const Text('Please log in to your account in order to interact with and create notes!'),
+              const Text(
+                  'Please log in to your account in order to interact with and create notes!'),
               TextField(
                 controller: _email,
                 enableSuggestions: false,
@@ -103,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                         const AuthEventForgotPassword(),
                       );
                 },
-                child: const Text('I forgot my Password'),
+                child: const Text('I forgot my password'),
               ),
               TextButton(
                 onPressed: () {
@@ -112,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                       );
                 },
                 child: const Text('Not registered yet? Register here!'),
-              ),
+              )
             ],
           ),
         ),
