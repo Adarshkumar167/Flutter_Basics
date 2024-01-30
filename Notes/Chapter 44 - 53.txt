@@ -1,0 +1,15 @@
+Chapter 45 - App Icons and App Name
+-----------------------------------
+
+App Icon
+Splash Screen
+
+You can find free app icons
+https://www.stockio.com
+
+Good tool for outputting app icons
+https://appicon.co
+
+
+Chapter 46 - Splash Screen
+--------------------------
